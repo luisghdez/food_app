@@ -4,11 +4,11 @@
 
 <h2>Meals in this Category</h2>
 
-<ul>
-  <% @meals.each do |meal| %>
-    <li>
-      <%= link_to meal.strMeal, "#" %> <!-- Replace "#" with the actual path to meal show page if needed -->
-      <%= meal.price %>
-    </li>
-  <% end %>
-</ul>
+<% @meals.each do |meal| %>
+  <div>
+    <h3><%= meal.strMeal %></h3>
+    <img src="<%= meal.strMealThumb %>" alt="<%= meal.strMeal %>">
+    <%= meal.price %>
+    <%= link_to 'Add to Cart', add_meal_to_cart_path(meal_id: meal.id), method: :post %>
+  </div>
+<% end %>

@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_24_191747) do
+ActiveRecord::Schema.define(version: 2023_07_24_204131) do
+
+  create_table "carts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "idCategory"
@@ -19,6 +26,15 @@ ActiveRecord::Schema.define(version: 2023_07_24_191747) do
     t.string "strCategory"
     t.string "strCategoryThumb"
     t.text "strCategoryDescription"
+  end
+
+  create_table "meal_carts", force: :cascade do |t|
+    t.integer "meal_id", null: false
+    t.integer "cart_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cart_id"], name: "index_meal_carts_on_cart_id"
+    t.index ["meal_id"], name: "index_meal_carts_on_meal_id"
   end
 
   create_table "meals", force: :cascade do |t|
@@ -44,5 +60,8 @@ ActiveRecord::Schema.define(version: 2023_07_24_191747) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "carts", "users"
+  add_foreign_key "meal_carts", "carts"
+  add_foreign_key "meal_carts", "meals"
   add_foreign_key "meals", "categories"
 end
