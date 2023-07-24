@@ -6,6 +6,6 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     @meals = @category.meals
-    raise
+    @cart = current_user.cart
   end
 end

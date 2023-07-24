@@ -6,9 +6,16 @@ class CartsController < ApplicationController
   end
 
   def add_meal
-    @meal = Meal.find(params[:meal_id])
-    current_user.cart.meals << @meal
-    redirect_to category_meal_path(@meal.category, @meal), notice: 'Meal added to cart successfully!'
+    @meal = Meal.find(params[:id])
+    new_cart_meal = MealCart.new
+    new_cart_meal.cart = current_user.cart
+    new_cart_meal.meal = @meal
+    if new_cart_meal.save
+      flash[:message] = "Meal has been added to your cart."
+      redirect_to root_path
+    else
+      flash[:message] = "Failed to add meal to your cart: #{meal_cart.errors.full_messages.join(', ')}"
+    end
   end
 
   def remove_meal

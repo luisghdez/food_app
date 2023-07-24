@@ -4,5 +4,8 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show] do
     resources :meals
   end
-  post '/meals/:meal_id/add_to_cart', to: 'meals#add_to_cart', as: 'add_meal_to_cart'
+  resources :carts, only: [:show]
+  resources :meal_carts, only: [:index]
+  post 'carts/add_meal'
+  post 'carts/remove'
 end
