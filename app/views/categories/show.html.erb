@@ -1,0 +1,13 @@
+<h1><%= @category.strCategory %></h1>
+
+<p><%= @category.strCategoryDescription %></p>
+
+<h2>Meals in this Category</h2>
+
+<ul>
+  <% @meals.each do |meal| %>
+    <li>
+      <%= link_to meal.strMeal, "#" %> <!-- Replace "#" with the actual path to meal show page if needed -->
+    </li>
+  <% end %>
+</ul>
