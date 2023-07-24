@@ -8,6 +8,7 @@
   <% @meals.each do |meal| %>
     <li>
       <%= link_to meal.strMeal, "#" %> <!-- Replace "#" with the actual path to meal show page if needed -->
+      <%= meal.price %>
     </li>
   <% end %>
 </ul>
