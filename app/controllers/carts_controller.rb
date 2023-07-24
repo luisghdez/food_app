@@ -12,7 +12,7 @@ class CartsController < ApplicationController
     new_cart_meal.meal = @meal
     if new_cart_meal.save
       flash[:message] = "Meal has been added to your cart."
-      redirect_to root_path
+      redirect_to meal_carts_path
     else
       flash[:message] = "Failed to add meal to your cart: #{meal_cart.errors.full_messages.join(', ')}"
     end
