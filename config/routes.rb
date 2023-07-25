@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   resources :carts, only: [:show]
   resources :meal_carts, only: [:index]
   post 'carts/add_meal'
-  post 'carts/remove'
+  post 'carts/update_meal'
+  post 'carts/remove_meal'
 end

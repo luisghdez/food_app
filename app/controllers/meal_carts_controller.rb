@@ -4,6 +4,6 @@ class MealCartsController < ApplicationController
   def index
     @order = MealCart.where(cart_id: current_user.cart.id)
     @total = 0
-    @order.each { |o| @total += o.meal.price }
+    @order.each { |o| @total += o.meal.price * o.quantity }
   end
 end

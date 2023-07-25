@@ -11,17 +11,7 @@
     <%= meal.price %>
     <%= form_with(url: carts_add_meal_path) do |f| %>
         <%= f.hidden_field :id, value: meal.id %>
-        <%# <%= f.number_field :quantity, value: 0, min: 1 %>
+        <%= f.number_field :quantity, value: 0, min: 1 %>
         <%= f.submit "Add To Cart" %>
     <% end %>
-<% end %>
-
-<% if flash[:notice] %>
-  <div class="alert alert-success">
-    <%= flash[:notice] %>
-  </div>
-<% elsif flash[:alert] %>
-  <div class="alert alert-danger">
-    <%= flash[:alert] %>
-  </div>
 <% end %>
