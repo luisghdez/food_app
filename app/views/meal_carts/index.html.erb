@@ -1,0 +1,10 @@
+<h1>Your cart broski</h1>
+<ul>
+  <% @order.each do |o| %>
+    <li>
+      <%= o.meal.strMeal %>
+      <%= o.meal.price %>
+    </li>
+  <% end %>
+  <p>Total: <%= @total %> </p>
+</ul>
