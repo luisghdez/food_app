@@ -10,6 +10,7 @@ class CartsController < ApplicationController
     new_cart_meal = MealCart.new
     new_cart_meal.cart = current_user.cart
     new_cart_meal.meal = @meal
+    new_cart_meal.quantity = params[:quantity]
     if new_cart_meal.save
       flash[:message] = "Meal has been added to your cart."
       redirect_to meal_carts_path
@@ -18,9 +19,20 @@ class CartsController < ApplicationController
     end
   end
 
+  def update_meal
+    @meal = Meal.find(params[:id])
+    current_meal_cart = MealCart.find_by(meal_id: @meal.id)
+    quantity = current_meal_cart.quantity.to_i
+    if current_meal_cart && quantity > 0
+      current_meal_cart.update(quantity: params[:quantity])
+    elsif quantity <= 0
+      current_meal_cart.destroy
+    else
+      MealCart.create(meal: @meal, quantity: params[:quantity])
+    end
+  end
+
   def remove_meal
-    @meal = Meal.find(params[:meal_id])
-    current_user.cart.meals.delete(@meal)
-    redirect_to cart_path, notice: 'Meal removed from cart successfully!'
+    MealCart.find_by(id: params[:id]).destroy
   end
 end

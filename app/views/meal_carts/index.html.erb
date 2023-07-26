@@ -1,10 +1,21 @@
 <h1>Your cart broski</h1>
 <ul>
   <% @order.each do |o| %>
-    <li>
+    <div style='display:flex'>
+      <p>Name:</p>
       <%= o.meal.strMeal %>
+      <p>Price:</p>
       <%= o.meal.price %>
-    </li>
+      <%= form_with(url: carts_update_meal_path) do |f| %>
+        <%= f.hidden_field :id, value: o.meal.id %>
+        <%= f.number_field :quantity, value: o.quantity, min: 0 %>
+        <%= f.submit "Add To Cart" %>
+      <% end %>
+      <%= form_with(url: carts_remove_meal_path) do |f| %>
+        <%= f.hidden_field :id, value: o.id %>
+        <%= f.submit "X" %>
+      <% end %>
+    </div>
   <% end %>
   <p>Total: <%= @total %> </p>
 </ul>
