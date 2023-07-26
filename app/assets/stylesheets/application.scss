@@ -42,3 +42,31 @@
 .navbar-nav .nav-item {
   margin-left: 10px;
 }
+
+/* Set the height of the cards to make them consistent */
+.card {
+  height: 140px;
+  min-width: 110px !important;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Add a scrollable container for the cards */
+.container {
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+/* Adjust the spacing between cards */
+.mb-4 {
+  margin-right: 15px;
+}
+
+.cat-row {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.card-img-top {
+  width: 75% !important;
+}

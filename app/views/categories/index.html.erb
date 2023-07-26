@@ -1,11 +1,21 @@
-<form class="form-inline my-2 my-lg-0">
-  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-</form>
-<ul>
-  <% @categories.each do |category| %>
-    <li>
-      <%= link_to category.strCategory, category_path(category) %>
-    </li>
-  <% end %>
-</ul>
+<div class="container">
+  <form class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+  <div class="cat-row">
+    <% @categories.each do |category| %>
+          <%= link_to category_path(category) do %>
+            <div class="card">
+              <img src="<%= category.strCategoryThumb %>" class="card-img-top" alt="<%= category.strCategory %>">
+              <div class="card-body">
+                <h5 class="card-title"><%= category.strCategory %></h5>
+              </div>
+            </div>
+          <% end %>
+    <% end %>
+  </div>
+  <div>
+    <h2>Popular Items</h2>
+  </div>
+</div>
