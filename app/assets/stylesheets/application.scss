@@ -44,12 +44,12 @@
 }
 
 /* Set the height of the cards to make them consistent */
-.cat-card {
-  height: 140px;
-  min-width: 110px !important;
-  justify-content: center;
-  align-items: center;
-}
+// .cat-card {
+//   height: 140px;
+//   min-width: 110px !important;
+//   justify-content: center;
+//   align-items: center;
+// }
 
 /* Add a scrollable container for the cards */
 .container {
@@ -96,4 +96,20 @@
 /* Add some spacing for the quantity input field */
 .form-control {
   margin-top: 10px;
+}
+
+/* Custom styles for the Categories Section */
+.cat-card {
+  transition: transform 0.2s;
+}
+
+.cat-card:hover {
+  transform: scale(1.05);
+}
+
+/* Media Query for Mobile */
+@media (max-width: 767px) {
+  .cat-card {
+    margin-bottom: 20px;
+  }
 }
