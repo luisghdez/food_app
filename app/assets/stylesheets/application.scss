@@ -72,9 +72,28 @@
 }
 
 .meal-card {
+  // padding: 12px;
+  background-color: grey !important;
+  border-radius: 15px !important;
+  // height: 100%;
+  align-items: center;
+  padding-top: 1.25rem;
+}
+
+.meal-row {
 
 }
 
-.col-sm-6 {
-  width: 50% !important;
+/* Custom styles for the cart page */
+.container {
+  padding: 20px;
+}
+
+.table {
+  margin-bottom: 20px;
+}
+
+/* Add some spacing for the quantity input field */
+.form-control {
+  margin-top: 10px;
 }

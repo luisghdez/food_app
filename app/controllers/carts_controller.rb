@@ -10,7 +10,7 @@ class CartsController < ApplicationController
     new_cart_meal = MealCart.new
     new_cart_meal.cart = current_user.cart
     new_cart_meal.meal = @meal
-    new_cart_meal.quantity = params[:quantity]
+    new_cart_meal.quantity = 1
     if new_cart_meal.save
       flash[:message] = "Meal has been added to your cart."
       redirect_to meal_carts_path

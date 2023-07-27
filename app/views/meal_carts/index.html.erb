@@ -1,21 +1,35 @@
-<h1>Your cart broski</h1>
-<ul>
-  <% @order.each do |o| %>
-    <div style='display:flex'>
-      <p>Name:</p>
-      <%= o.meal.strMeal %>
-      <p>Price:</p>
-      <%= o.meal.price %>
-      <%= form_with(url: carts_update_meal_path) do |f| %>
-        <%= f.hidden_field :id, value: o.meal.id %>
-        <%= f.number_field :quantity, value: o.quantity, min: 0 %>
-        <%= f.submit "Add To Cart" %>
+<div class="container">
+  <h1>Your Cart</h1>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order.each do |o| %>
+        <tr>
+          <td><%= o.meal.strMeal %></td>
+          <td><%= o.meal.price %></td>
+          <td>
+            <%= form_with(url: carts_update_meal_path) do |f| %>
+              <%= f.hidden_field :id, value: o.meal.id %>
+              <%= f.number_field :quantity, value: o.quantity, min: 0, class: 'form-control' %>
+              <%= f.submit "Update", class: 'btn btn-primary btn-sm mt-1' %>
+            <% end %>
+          </td>
+          <td>
+            <%= form_with(url: carts_remove_meal_path) do |f| %>
+              <%= f.hidden_field :id, value: o.id %>
+              <%= f.submit "Remove", class: 'btn btn-danger btn-sm' %>
+            <% end %>
+          </td>
+        </tr>
       <% end %>
-      <%= form_with(url: carts_remove_meal_path) do |f| %>
-        <%= f.hidden_field :id, value: o.id %>
-        <%= f.submit "X" %>
-      <% end %>
-    </div>
-  <% end %>
-  <p>Total: <%= @total %> </p>
-</ul>
+    </tbody>
+  </table>
+  <p class="text-right">Total: $<%= @total %>.00 </p>
+</div>
