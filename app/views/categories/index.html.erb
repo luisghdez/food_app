@@ -1,21 +1,29 @@
 <div class="container">
+  <!-- Search Bar -->
   <form class="form-inline my-2 my-lg-0">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
   </form>
+
+  <!-- Categories Section -->
   <div class="cat-row">
     <% @categories.each do |category| %>
-          <%= link_to category_path(category) do %>
-            <div class="card">
-              <img src="<%= category.strCategoryThumb %>" class="card-img-top" alt="<%= category.strCategory %>">
-              <div class="card-body">
-                <h5 class="card-title"><%= category.strCategory %></h5>
-              </div>
+      <div class="col-md-4 mb-4">
+        <%= link_to category_path(category) do %>
+          <div class="card cat-card">
+            <img src="<%= category.strCategoryThumb %>" class="card-img-top" alt="<%= category.strCategory %>">
+            <div class="card-body">
+              <h5 class="card-title"><%= category.strCategory %></h5>
             </div>
-          <% end %>
+          </div>
+        <% end %>
+      </div>
     <% end %>
   </div>
+
+  <!-- Popular Items Section -->
   <div>
     <h2>Popular Items</h2>
+    <!-- Add popular items content here -->
   </div>
 </div>
