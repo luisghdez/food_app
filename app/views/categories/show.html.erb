@@ -4,14 +4,25 @@
 
 <h2>Meals in this Category</h2>
 
-<% @meals.each do |meal| %>
-  <div>
-    <h3><%= meal.strMeal %></h3>
-    <img src="<%= meal.strMealThumb %>" alt="<%= meal.strMeal %>">
-    <%= meal.price %>
-    <%= form_with(url: carts_add_meal_path) do |f| %>
-        <%= f.hidden_field :id, value: meal.id %>
-        <%= f.number_field :quantity, value: 0, min: 1 %>
-        <%= f.submit "Add To Cart" %>
-    <% end %>
-<% end %>
+
+
+<div class="row">
+  <% @meals.each do |meal| %>
+  <div class="col-sm-6 col-lg-3">
+  <div class="card meal-card align-items-center">
+    <img class="card-img-top" src="<%= meal.strMealThumb %>" alt="<%= meal.strMeal %>">
+    <div class="card-body">
+      <h5 class="card-title"><%= meal.strMeal %></h5>
+      <div class="d-flex">
+        <h4>$<%= meal.price %>.00</h4>
+        <%= form_with(url: carts_add_meal_path) do |f| %>
+          <%= f.hidden_field :id, value: meal.id %>
+          <%# <%= f.number_field :quantity, value: 0, min: 1 %>
+          <%= f.submit "+" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  </div>
+  <% end %>
+</div>

@@ -44,7 +44,7 @@
 }
 
 /* Set the height of the cards to make them consistent */
-.card {
+.cat-card {
   height: 140px;
   min-width: 110px !important;
   justify-content: center;
@@ -69,4 +69,12 @@
 
 .card-img-top {
   width: 75% !important;
+}
+
+.meal-card {
+
+}
+
+.col-sm-6 {
+  width: 50% !important;
 }

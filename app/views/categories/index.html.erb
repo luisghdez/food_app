@@ -6,7 +6,7 @@
   <div class="cat-row">
     <% @categories.each do |category| %>
           <%= link_to category_path(category) do %>
-            <div class="card">
+            <div class="card cat-card">
               <img src="<%= category.strCategoryThumb %>" class="card-img-top" alt="<%= category.strCategory %>">
               <div class="card-body">
                 <h5 class="card-title"><%= category.strCategory %></h5>
