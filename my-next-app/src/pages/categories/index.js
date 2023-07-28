@@ -2,6 +2,8 @@ import React from 'react';
 import useSWR from 'swr';
 import Link from 'next/link';
 import axios from 'axios';
+import Layout from '../../../components/Layout';
+
 
 const fetcher = url => axios.get(url).then(res => res.data);
 
@@ -19,6 +21,8 @@ function Categories() {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
         <link rel="stylesheet" href="my-next-app/src/app/globals.scss" />
       </head>
+    <Layout>
+    </Layout>
     <div className="container">
       {/* Search Bar */}
       <form className="form-inline my-2 my-lg-0">
