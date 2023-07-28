@@ -14,45 +14,48 @@ function Categories() {
   if (!categories) return <div>Loading...</div>;
 
   return (
-    <div>
-      <head>
-        <title>My Page Title</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
-        <link rel="stylesheet" href="my-next-app/src/app/globals.scss" />
-      </head>
-    <Layout>
-    </Layout>
-    <div className="container">
-      {/* Search Bar */}
-      <form className="form-inline my-2 my-lg-0">
-        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
+    <>
+      <Layout>
+      </Layout>
+      {/* Hero Section */}
+      <header className="hero bg-primary text-white text-center">
+        <div className="container">
+          <h1>Welcome to Food App!</h1>
+          <p>Discover new recipes and manage your meal plan easily.</p>
+        </div>
+      </header>
 
-      {/* Categories Section */}
-      <div className="cat-row">
-        {categories.map(category => (
-          <div className="col-md-4 mb-4" key={category.id}>
-            <Link href={`/categories/${category.id}`}>
-              <div className="card cat-card">
-                <img src={category.strCategoryThumb} className="card-img-top" alt={category.strCategory}/>
-                <div className="card-body">
-                  <h5 className="card-title">{category.strCategory}</h5>
-                </div>
+      {/* Main Content */}
+      <main className="container my-4">
+        {/* Search Bar */}
+
+        {/* Categories Section */}
+        <section>
+          <h2 className="text-center my-4">Browse by Categories</h2>
+          <div className="row">
+            {categories.map(category => (
+              <div className="col-md-4 mb-4" key={category.id}>
+                <Link href={`/categories/${category.id}`}>
+                    <div className="card h-100">
+                      <img src={category.strCategoryThumb} className="card-img-top" alt={category.strCategory}/>
+                      <div className="card-body">
+                        <h5 className="card-title">{category.strCategory}</h5>
+                      </div>
+                    </div>
+                </Link>
               </div>
-            </Link>
+            ))}
           </div>
-        ))}
-      </div>
+        </section>
+      </main>
 
-      {/* Popular Items Section */}
-      <div>
-        <h2>Popular Items</h2>
-        {/* Add popular items content here */}
-      </div>
-    </div>
-    </div>
+      {/* Footer */}
+      <footer className="bg-light text-center text-lg-start">
+        <div className="text-center p-3" style={{backgroundColor: 'rgba(0, 0, 0, 0.2)'}}>
+          © {new Date().getFullYear()} Food App
+        </div>
+      </footer>
+    </>
   );
 }
 
