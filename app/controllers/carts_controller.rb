@@ -1,22 +1,18 @@
 class CartsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token, only: [:add_meal, :update_meal, :remove_meal]
 
   def show
-    @cart = current_user.cart
+    @cart = User.last.cart
   end
 
   def add_meal
     @meal = Meal.find(params[:id])
     new_cart_meal = MealCart.new
-    new_cart_meal.cart = current_user.cart
+    new_cart_meal.cart = User.last.cart
     new_cart_meal.meal = @meal
     new_cart_meal.quantity = 1
-    if new_cart_meal.save
-      flash[:message] = "Meal has been added to your cart."
-      redirect_to meal_carts_path
-    else
-      flash[:message] = "Failed to add meal to your cart: #{meal_cart.errors.full_messages.join(', ')}"
-    end
+    new_cart_meal.save
   end
 
   def update_meal

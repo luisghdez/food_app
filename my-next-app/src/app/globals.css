@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@import "bootstrap";
+
+/* Custom styles for the navbar */
+.navbar {
+ background-color: #3f51b5; /* Change the background color to your preferred color */
+}
+
+.navbar-brand {
+ color: #ffffff; /* Change the brand text color */
+ font-weight: bold;
+}
+
+.navbar .nav-link {
+ color: #ffffff; /* Change the link text color */
+}
+
+/* Change the link text color when hovering */
+.navbar .nav-link:hover {
+ color: #f5f5f5;
+}
+
+/* Adjust the spacing and alignment of the navbar elements */
+.navbar-nav {
+ margin-left: auto;
+}
+
+.navbar-nav .nav-item {
+ margin-left: 10px;
+}
+
+
+/* Add a scrollable container for the cards */
+.container {
+ overflow-x: scroll;
+ white-space: nowrap;
+}
+
+/* Adjust the spacing between cards */
+.mb-4 {
+ margin-right: 15px;
+}
+
+.cat-row {
+ display: flex;
+ flex-wrap: nowrap;
+}
+
+.card-img-top {
+ width: 75% !important;
+}
+
+
+.meal-row {
+
+}
+
+/* Custom styles for the cart page */
+.container {
+ padding: 20px;
+}
+
+.table {
+ margin-bottom: 20px;
+}
+
+/* Add some spacing for the quantity input field */
+.form-control {
+ margin-top: 10px;
+}
+
+/* Custom styles for the Categories Section */
+.cat-card {
+ transition: transform 0.2s;
+}
+
+.cat-card:hover {
+ transform: scale(1.05);
+}
+
+/* Media Query for Mobile */
+@media (max-width: 767px) {
+ .cat-card {
+   margin-bottom: 20px;
+ }
+}
