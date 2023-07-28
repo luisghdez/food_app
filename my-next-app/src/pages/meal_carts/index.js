@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import useSWR from 'swr';
+import useSWR, { mutate } from 'swr';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
@@ -13,13 +13,14 @@ const MealCarts = () => {
   if (!data) return <div>Loading...</div>
 
   const handleUpdateMeal = async (mealCartId, quantity) => {
+    console.log('mealCartId', mealCartId);
     try {
-      const response = await axios.post('http://localhost:3000/carts/update_meal', { id: mealCartId, quantity });
+      const response = await axios.post('http://localhost:3000/carts/update_meal', { id: mealCartId, quantity: quantity });
       if (response.status === 200) {
         // If the request was successful, refresh the data
-        mutate('http://localhost:3000/carts');
+        mutate('http://localhost:3000/meal_carts');
       } else {
-        alert('Failed to update meal quantity');
+        mutate('http://localhost:3000/meal_carts');
       }
     } catch (error) {
       alert(`Failed to update meal quantity: ${error.message}`);
@@ -31,7 +32,7 @@ const MealCarts = () => {
       const response = await axios.post('http://localhost:3000/carts/remove_meal', { id: mealCartId });
       if (response.status === 200) {
         // If the request was successful, refresh the data
-        mutate('http://localhost:3000/carts');
+        mutate('http://localhost:3000/meal_carts');
       } else {
         alert('Failed to remove meal');
       }
@@ -56,10 +57,12 @@ const MealCarts = () => {
           {data.order.map((mealCart, index) => (
             <tr key={index}>
               <td>{mealCart.meal.strMeal}</td>
-              <td>{mealCart.meal.price}</td>
+              <td>${mealCart.meal.price}.00</td>
               <td>
-                <input type="number" min="0" className="form-control" value={mealCart.quantity} onChange={e => handleUpdateMeal(mealCart.id, e.target.value)} />
-                <button className='btn btn-primary btn-sm mt-1' onClick={() => handleUpdateMeal(mealCart.id, mealCart.quantity)}>Update</button>
+                {console.log('dta', data.order[0])};
+                {console.log('mealcart', mealCart.meal )};
+                <input type="number" min="0" className="form-control" value={mealCart.quantity} onChange={e => handleUpdateMeal(mealCart.meal.id, e.target.value)} />
+                <button className='btn btn-primary btn-sm mt-1' onClick={() => handleUpdateMeal(mealCart.meal.id, mealCart.quantity)}>Update</button>
               </td>
               <td>
                 <button className='btn btn-danger btn-sm' onClick={() => handleRemoveMeal(mealCart.id)}>Remove</button>
@@ -68,7 +71,7 @@ const MealCarts = () => {
           ))}
         </tbody>
       </table>
-      <p className="text-right">Total: ${data.total} </p>
+      <p className="text-right">Total: ${data.total}.00 </p>
     </div>
   );
 }

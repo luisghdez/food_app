@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
   # before_action :authenticate_user!
-  skip_before_action :verify_authenticity_token, only: [:add_meal]
+  skip_before_action :verify_authenticity_token, only: [:add_meal, :update_meal, :remove_meal]
 
   def show
     @cart = User.last.cart
@@ -12,9 +12,7 @@ class CartsController < ApplicationController
     new_cart_meal.cart = User.last.cart
     new_cart_meal.meal = @meal
     new_cart_meal.quantity = 1
-    if new_cart_meal.save
-      redirect_to meal_carts_path
-    end
+    new_cart_meal.save
   end
 
   def update_meal

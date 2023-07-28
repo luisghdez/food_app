@@ -12,12 +12,11 @@ function Category({ data }) {
 
         // Send a POST request to your Rails server to add the meal to the cart
         const response = await axios.post('http://localhost:3000/carts/add_meal', data);
-        console.log(response);
 
         // If the request was successful, alert the user
         if (response.status === 200) {
         } else {
-          alert("Failed to add meal to your cart.");
+          alert("Meal added to your cart.");
         }
       } catch (error) {
         // If there was an error with the request, alert the user

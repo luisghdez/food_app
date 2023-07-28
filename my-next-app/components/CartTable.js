@@ -16,14 +16,14 @@ const CartTable = ({ cart }) => {
       <tbody>
         {cart.order.map(item => (
           <tr key={item.id}>
-            {/* <td>{item.meal.strMeal}</td>
+            <td>{item.meal.strMeal}</td>
             <td>{item.meal.price}</td>
             <td>
               <UpdateQuantityButton mealId={item.meal.id} quantity={item.quantity} />
             </td>
             <td>
               <RemoveMealButton mealCartId={item.id} />
-            </td> */}
+            </td>
           </tr>
         ))}
       </tbody>
