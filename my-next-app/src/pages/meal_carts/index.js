@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import useSWR, { mutate } from 'swr';
 import axios from 'axios';
+import Layout from '../../../components/Layout';
 
 const fetcher = url => axios.get(url).then(res => res.data);
 
@@ -39,6 +40,9 @@ const MealCarts = () => {
   };
 
   return (
+    <div>
+    <Layout>
+    </Layout>
     <div className="container">
       <h1>Your Cart</h1>
       <table className="table table-bordered table-hover">
@@ -67,6 +71,7 @@ const MealCarts = () => {
         </tbody>
       </table>
       <p className="text-right">Total: ${data.total}.00 </p>
+    </div>
     </div>
   );
 }

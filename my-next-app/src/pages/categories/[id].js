@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import Layout from '../../../components/Layout';
+
 
 function Category({ data }) {
   const { category, meals, cart } = data;
@@ -28,6 +30,9 @@ function Category({ data }) {
   };
 
   return (
+    <div>
+    <Layout>
+    </Layout>
     <div className="container">
       <h1>{category.strCategory}</h1>
       <p>{category.strCategoryDescription}</p>
@@ -50,6 +55,7 @@ function Category({ data }) {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 }

@@ -4,10 +4,9 @@ class User < ApplicationRecord
 
   def create_cart
     my_cart = Cart.new
-    my_cart.user = current_user
+    my_cart.user = User.last
     my_cart.save
   end
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
